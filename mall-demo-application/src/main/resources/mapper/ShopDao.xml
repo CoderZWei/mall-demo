@@ -25,7 +25,7 @@
             <id column="shop_category_id" property="shopCategoryId"/>
             <result column="shop_category_name" property="shopCategoryName"/>
         </association>
-        <association column="owner" property="user_id"
+        <association column="user_id" property="owner"
                      javaType="com.zw.malldemo.entity.PersonInfo">
             <id column="user_id" property="userId"/>
             <result column="name" property="name"/>

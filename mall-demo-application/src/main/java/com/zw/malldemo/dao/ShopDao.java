@@ -2,9 +2,11 @@ package com.zw.malldemo.dao;
 
 import com.zw.malldemo.entity.Shop;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface ShopDao {
     /**
      * 分页查询店铺，可输入的条件有：店铺名(模糊),店铺状态，店铺类别，区域Id,owner
