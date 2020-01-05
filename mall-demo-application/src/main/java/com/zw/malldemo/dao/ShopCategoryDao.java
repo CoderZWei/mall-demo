@@ -2,9 +2,11 @@ package com.zw.malldemo.dao;
 
 import com.zw.malldemo.entity.ShopCategory;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface ShopCategoryDao {
 
     /**

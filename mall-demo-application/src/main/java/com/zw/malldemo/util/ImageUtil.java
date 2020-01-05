@@ -15,7 +15,8 @@ import java.util.Date;
 import java.util.Random;
 
 public class ImageUtil {
-    private static String sBasePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+    //private static String sBasePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+    private static String sBasePath =ImageUtil.class.getClassLoader().getResource(".").getPath();
     private static final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
     private static final Random r = new Random();
     private static Logger logger = LoggerFactory.getLogger(ImageUtil.class);
@@ -54,6 +55,7 @@ public class ImageUtil {
         String extension = getFileExtension(thumbnail.getImageName());
         // 如果目标路径不存在，则自动创建
         makeDirPath(targetAddr);
+        logger.info("target:"+targetAddr);
         // 获取文件存储的相对路径(带文件名)
         String relativeAddr = targetAddr + readFileName + extension;
 
@@ -61,11 +63,12 @@ public class ImageUtil {
         // 调用Thumbnails生成带有水印的图片
         try {
             Thumbnails.of(thumbnail.getImage()).size(200, 200)
-                    .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(sBasePath + "/watermark.jpg")), 0.25f)
+                    .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(sBasePath + "\\watermark.jpg")), 0.25f)
                     .outputQuality(0.8f).toFile(destFile);
         } catch (IOException e) {
-            logger.error(e.toString());
-            e.printStackTrace();
+            logger.error("error:"+sBasePath);
+            throw new RuntimeException();
+            //e.printStackTrace();
         }
         // 返回图片相对路径地址
         return relativeAddr;
@@ -84,7 +87,7 @@ public class ImageUtil {
         // 调用Thumbnails生成带有水印的图片
         try {
             Thumbnails.of(thumbnail.getImage()).size(337, 640)
-                    .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(sBasePath + "/watermark.jpg")), 0.25f)
+                    .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(sBasePath + "\\watermark.jpg")), 0.25f)
                     .outputQuality(0.9f).toFile(destFile);
         } catch (IOException e) {
             logger.error(e.toString());

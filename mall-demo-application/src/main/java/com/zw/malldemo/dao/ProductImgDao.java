@@ -1,9 +1,11 @@
 package com.zw.malldemo.dao;
 
 import com.zw.malldemo.entity.ProductImg;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface ProductImgDao {
 
     /**

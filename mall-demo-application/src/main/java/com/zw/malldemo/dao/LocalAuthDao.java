@@ -2,9 +2,11 @@ package com.zw.malldemo.dao;
 
 import com.zw.malldemo.entity.LocalAuth;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public interface LocalAuthDao {
 
     /**
