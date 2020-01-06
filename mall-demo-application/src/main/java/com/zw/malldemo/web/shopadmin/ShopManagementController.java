@@ -12,6 +12,7 @@ import com.zw.malldemo.enums.ShopStateEnum;
 import com.zw.malldemo.service.AreaService;
 import com.zw.malldemo.service.ShopCategoryService;
 import com.zw.malldemo.service.ShopService;
+import com.zw.malldemo.util.CodeUtil;
 import com.zw.malldemo.util.HttpServletRequestUtil;
 import com.zw.malldemo.util.ImageUtil;
 import com.zw.malldemo.util.PathUtil;
@@ -47,6 +48,11 @@ public class ShopManagementController {
     @ResponseBody
     private Map<String, Object> registerShop(HttpServletRequest request) throws IOException {
         Map<String, Object> modelMap = new HashMap<>();
+        if(!CodeUtil.checkVerifyCode(request)){
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "输入了错误的验证码");
+            return modelMap;
+        }
         // 1.接收并转化相应的参数，包括店铺信息以及图片信息
         String shopStr = HttpServletRequestUtil.getString(request, "shopStr");
         ObjectMapper mapper = new ObjectMapper();
