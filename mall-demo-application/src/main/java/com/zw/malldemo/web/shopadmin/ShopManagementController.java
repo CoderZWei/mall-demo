@@ -128,7 +128,13 @@ public class ShopManagementController {
     @ResponseBody
     private Map<String, Object> getshoplist(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
-        PersonInfo user = (PersonInfo) request.getSession().getAttribute("user");
+        //之后改掉
+        PersonInfo user=new PersonInfo();
+        user.setUserId(1L);
+        user.setName("测试");
+        request.getSession().setAttribute("user",user);
+
+        user = (PersonInfo) request.getSession().getAttribute("user");
         try {
             Shop shopCondition = new Shop();
             shopCondition.setOwner(user);
@@ -224,5 +230,30 @@ public class ShopManagementController {
             modelMap.put("errMsg", "请输入店铺Id");
             return modelMap;
         }
+    }
+
+    @RequestMapping(value = "/getshopmanagementinfo",method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String,Object>getshopmanagementinfo(HttpServletRequest request){
+        Map<String, Object>modelMap=new HashMap<>();
+        long shopId=HttpServletRequestUtil.getLong(request,"shopId");
+        if (shopId<=0){
+            Object currentShopObj=request.getSession().getAttribute("currentShop");
+            if(currentShopObj==null){
+                modelMap.put("redirect", true);
+                modelMap.put("url", "/mall-demo/shopadmin/shoplist");
+            }else {
+                Shop currentShop = (Shop) currentShopObj;
+                modelMap.put("redirect",false);
+                modelMap.put("shopId", currentShop.getShopId());
+            }
+        }else {
+            Shop currentShop=new Shop();
+            currentShop.setShopId(shopId);
+            request.getSession().setAttribute("currentShop", currentShop);
+            modelMap.put("redirect", false);
+            modelMap.put("shopId", shopId);
+        }
+        return modelMap;
     }
 }
