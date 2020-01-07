@@ -77,5 +77,22 @@ public class ShopDaoTest {
         int count = shopDao.queryShopCount(shopCondition);
         System.out.println("店铺列表的大小：" + shopList.size());
         System.out.println("店铺总数：" + count);
+        ShopCategory sc=new ShopCategory();
+        sc.setShopCategoryId(2L);
+        shopCondition.setShopCategory(sc);
+        count = shopDao.queryShopCount(shopCondition);
+        System.out.println("店铺总数：" + count);
+    }
+
+    @Test
+    public void testQueryShopList(){
+        Shop shopCondition=new Shop();
+        PersonInfo owner=new PersonInfo();
+        owner.setUserId(1L);
+        shopCondition.setOwner(owner);
+        List<Shop> shopList=shopDao.queryShopList(shopCondition,0,5);
+        System.out.println(shopList.size());
+        int count=shopDao.queryShopCount(shopCondition);
+        System.out.println(count);
     }
 }
