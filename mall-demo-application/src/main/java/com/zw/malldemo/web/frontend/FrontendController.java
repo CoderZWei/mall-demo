@@ -32,9 +32,9 @@ public class FrontendController {
      *
      * @return
      */
-    @RequestMapping(value = "/shopdetail.css", method = RequestMethod.GET)
+    @RequestMapping(value = "/shopdetail", method = RequestMethod.GET)
     private String showShopDetail(){
-        return "frontend/shopdetail.css";
+        return "frontend/shopdetail";
     }
 
     /**

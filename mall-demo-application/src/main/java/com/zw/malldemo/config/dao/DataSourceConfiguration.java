@@ -1,6 +1,7 @@
 package com.zw.malldemo.config.dao;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.zw.malldemo.util.DESUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -31,9 +32,9 @@ public class DataSourceConfiguration {
         // 数据库连接URL
         dataSource.setJdbcUrl(jdbcUrl);
         // 设置用户名
-        dataSource.setUser(jdbcUsername);
+        dataSource.setUser(DESUtil.getDecryptString(jdbcUsername));
         // 设置用户密码
-        dataSource.setPassword(jdbcPassword);
+        dataSource.setPassword(DESUtil.getDecryptString(jdbcPassword));
         // 配置c3p0连接池的私有属性
         // 连接池最大线程数
         dataSource.setMaxPoolSize(30);
