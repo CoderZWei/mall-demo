@@ -30,4 +30,11 @@ public class ProductDaoTest {
         count = productDao.queryProductCount(productCondition);
         assertEquals(2, count);
     }
+
+    @Test
+    public void testUpdateProductCategoryToNull(){
+        // 将productCategoryId为44的商品类别下面的商品的商品类别置为空
+        int effectNum=productDao.updateProductCategoryToNull(44L);
+        assertEquals(1, effectNum);
+    }
 }
