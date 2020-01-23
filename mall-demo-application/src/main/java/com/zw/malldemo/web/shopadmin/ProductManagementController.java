@@ -63,7 +63,11 @@ public class ProductManagementController {
             long productCategoryId = HttpServletRequestUtil.getLong(request, "productCategoryId");
             String productName = HttpServletRequestUtil.getString(request, "productName");
             Product productCondition = compactProductCondition(currentShop.getShopId(), productCategoryId, productName);
-
+            // 传入查询条件以及分页信息进行查询，返回相应商品列表以及总数
+            ProductExecution pe = productService.getProductList(productCondition, pageIndex, pageSize);
+            modelMap.put("productList", pe.getProductList());
+            modelMap.put("count", pe.getCount());
+            modelMap.put("success", true);
         }else {
             modelMap.put("success", false);
             modelMap.put("errMsg", "empty pageSize or pageIndex or shopId");
