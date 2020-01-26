@@ -2,6 +2,9 @@ package com.zw.malldemo.entity;
 
 import java.util.Date;
 
+/**
+ * 本地验证实体类，主要用来做帐号密码的登录
+ */
 public class LocalAuth {
     // 主键id
     private Long localAuthId;
