@@ -48,7 +48,7 @@ $(function() {
                         window.location.href = '/mall-demo/frontend/index';
                     } else {
                         // 若用户是在店家管理系统页面则自动链接到店铺列表页中
-                        window.location.href = '/mall-demo/shopadmin/shoplist';
+                       window.location.href = '/mall-demo/shopadmin/shoplist';
                     }
                 } else {
                     $.toast('登录失败！' + data.errMsg);
