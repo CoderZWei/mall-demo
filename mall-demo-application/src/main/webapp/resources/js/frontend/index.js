@@ -11,8 +11,9 @@ $(function() {
             headLineList.map(function(item, index) {
                 swiperHtml += '' + '<div class="swiper-slide img-wrap">'
                     + '<a href="' + item.lineLink
-                    + '" external><img class="banner-img" src="' + item.lineImg
-                    + '" alt="' + item.lineName + '"></a>' + '</div>';
+                    + '" external><img class="banner-img" src="'
+                    +getContextPath() + item.lineImg + '" alt="'
+                    + item.lineName + '"></a>' + '</div>';
             });
             //将轮播图组赋值给前端HTML控件
             $('.swiper-wrapper').html(swiperHtml);
@@ -34,8 +35,8 @@ $(function() {
                     + '</p>' + '<p class="shop-desc">'
                     + item.shopCategoryDesc + '</p>' + '</div>'
                     + '<div class="shop-classify-img-warp">'
-                    + '<img class="shop-img" src="' + item.shopCategoryImg
-                    + '">' + '</div>' + '</div>';
+                    + '<img class="shop-img" src="' +getContextPath()
+                    + item.shopCategoryImg + '">' + '</div>' + '</div>';
             });
             //将拼接好的类别赋值给前端HTML控件进行展示
             $('.row').html(categoryHtml);
